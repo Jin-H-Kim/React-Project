@@ -2,12 +2,24 @@ import React from 'react';
 
 class List extends React.Component{
     render(){
+        var data = this.props.data;
+        var event = this.props.onChangeMode;
         return(
             <div className="list">
                 <ul>
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JAVASCRIPT</a></li>
+                    {data.map(function(value, idx){
+                        return (
+                        <li key={value.id}>
+                            <a 
+                                data-id={value.id}
+                                onClick={(e)=>{
+                                    e.preventDefault();
+                                    event(idx);
+                                    //console.log(e.target.dataset.id)
+                                }
+                            } href="#">{value.title}</a>
+                        </li>)
+                    })}
                 </ul>
             </div>
         );
