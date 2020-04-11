@@ -1,0 +1,7 @@
+body,html,div,p,ul{margin:0; padding:0;}
+li{list-style: none;}
+
+.userList{padding:10px;}
+.userList li{overflow:hidden; min-height:64px; position: relative;  border-bottom:1px solid #ccc; padding:10px 0 10px 74px;}
+.userList li:first-child{border-top:1px solid #ccc;}
+.userList li .userImg{position: absolute; left:0; top:10px;};
