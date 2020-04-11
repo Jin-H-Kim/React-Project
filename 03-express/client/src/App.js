@@ -33,7 +33,7 @@ class App extends React.Component{
                 <p className="userJob">{v.job}</p>
               </li>
             )
-          }): "loding"}
+          }): "loding..."}
           
         </ul>
       </div>

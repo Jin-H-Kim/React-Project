@@ -50,29 +50,28 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 res api 설정
 
 1. server.js 수정
-app.get('/api/customer', (req, res)=>{
+app.get('/api/customers', (req, res)=>{
     res.send([
         객체 전달(json 으로 반환됨)
     ])
 })
 
-2. package.js 추가
+2. 클라이언트에 package.js 추가
 proxy : "http://localhost:5000"
 
 3. app.js 에서 api값 걸정
 3-1 this.sate 값 설정 (customers : "")
-3-2 api 값은 componentDidMount(){
-    this.apiCall()
-        데이터는 변경되므로 state에 저장하기
-        .then(res=>this.setState({
-
-        }))
-        .catch(err => console.log(err))
-} 에서 처리
+3-2 api 값은 
+componentDidMount() {
+this.callApi()
+    .then(res => this.setState({customers: res}))
+    .catch(err => console.log(err));
+}
+에서 처리
 
 3-3 api 호출 함수 만들기
-apiCall = async()=>{
-    const response = await fetch('경로');
+callApi = async () => {
+    const response = await fetch('/api/customers');
     const body = await response.json();
-    return body
+    return body;
 }
