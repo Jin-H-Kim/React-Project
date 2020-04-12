@@ -75,3 +75,67 @@ callApi = async () => {
     const body = await response.json();
     return body;
 }
+
+
+##Database 연결
+AWS RDNS로 서버 구축
+
+
+MYsql 연결 파일로 서버 연결
+
+테이블 생성 쿼리문
+USE management;
+
+CREATE TABLE CUSTOMER(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	image VARCHAR(1024),
+	name VARCHAR(64),
+	birthday VARCHAR(64),
+	gender VARCHAR(64),
+	job VARCHAR(64)
+) DEFAULT CHARACTER SET UTF8;
+
+데이터 추가 쿼리문
+USE management;
+INSERT INTO CUSTOMER VALUES (1, 'https://placeimg.com/64/64/1', '김진혁', '811018', '남자', '퍼블리셔');
+
+데이터 베이스 연결
+gitignore 에 데이터 베이스 연결 제외 처리 하기
+#database 
+/database.json
+
+database.json 파일 만들기
+{
+    "host": "management-tutorial.cbazvjfdx25t.ap-northeast-2.rds.amazonaws.com",
+    "user": "user",
+    "password": "1998kjhkjh",
+    "prot": "3306",
+    "database":"management"
+}
+
+모듈 설치
+npm i -save mysql
+
+server.js 파일 수정
+
+const fs = require('fs');
+const data = fs.readFileSync('./database.json');
+const mysql = require('mysql');
+
+const conf = JSON.parse(data);
+const connection = mysql.createConnection({
+    host: conf.host,
+    user: conf.user,
+    password: conf.password,
+    port: conf.port,
+    database: conf.database
+})
+
+app.get('/api/customers', (req, res)=>{
+    connection.query(
+        "SELECT * FROM CUSTOMER",
+        (err, rows, fields)=>{
+            res.send(rows)
+        }
+    )
+})
