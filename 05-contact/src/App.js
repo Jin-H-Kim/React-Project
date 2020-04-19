@@ -6,7 +6,16 @@ import Contact from './Components/Contact';
 class App extends React.Component{
   constructor(props){
     super(props)    
-    this.state = {
+    this.state = {}
+  }
+  componentDidMount(){
+    fetch("https://yts.mx/api/v2/list_movies.json?sort_by=rating")
+      .then(res => res.json())
+      .then(js => console.log(js))
+      .catch(err => console.log(err))
+
+    var set = setTimeout(()=>{
+      this.setState({
         contact : [
             {
                 id: 1,
@@ -15,7 +24,7 @@ class App extends React.Component{
             },
             {
                 id: 2,
-                name: "han",
+                name: "hams",
                 tel: "010-1234-5678"
             },
             {
@@ -24,12 +33,17 @@ class App extends React.Component{
                 tel: "010-7673-3579"
             }
         ]
-    }
-}
+      })
+    },3000)
+  }
+  _makeList = () => {
+    var data = this.state.contact
+    return <Contact data={data}></Contact>
+  }
   render(){
     return(
       <div className="App">
-        <Contact data={this.state.contact}></Contact>
+        {this.state.contact ? this._makeList() : 'Loding....'}
       </div>
     )
   }
