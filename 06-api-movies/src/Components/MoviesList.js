@@ -25,7 +25,6 @@ class MoviesList extends React.Component{
                         </p>
                         <p className="summary">{value.summary}</p>
                     </div>
-                    
                 </li>
             )
         })
