@@ -1,0 +1,17 @@
+body, html{text-align:left;}
+body, html, div, ul, li, p{margin:0; padding:0;}
+li{list-style:none;}
+
+.listWrap{position: fixed; left:50%; top:50%; transform: translate(-50%, -50%); text-align: center; font-size:24px; font-weight: bold;}
+
+.list li{position: relative; min-height:240px; margin:20px 0 0; padding:0 5px;}
+.list li:first-child{margin-top:0;}
+.list .img{width:160px; position:absolute; left:5px; top:0;}
+.list .img img{width:100%;}
+.list .desc{padding:0 20px 0 185px;}
+.list .desc .title{font-weight:bold; font-size:16px;}
+.list .desc .summary{font-size:14px; line-height:18px; padding-top:10px;}
+.list .desc .genres{display:inline-block; margin: 10px 5px 0 0; font-size:12px; padding:0 10px; line-height:22px; border:1px solid #ddd; border-radius:12px;}
+
+.searBox {padding:10px 5px;}
+.searBox input{display:block; box-sizing:border-box; width:100%; padding:0 10px; border:1px solid #ccc; outline: none; line-height:30px; border-radius:15px;}

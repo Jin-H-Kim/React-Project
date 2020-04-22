@@ -6,17 +6,22 @@ class Contact extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            keyword: ''
+            keyword: '',
+            isSelected: 1,
+            data:''
         }
     }
+    _seleted = (i) => {
+        console.log('hi')
+    }
     makeList(data){
+        let handel = this.props.chageV;
         data.sort();
         data = data.filter((v) => {
             return v.name.indexOf(this.state.keyword) > -1
         });
-        console.log(data)
         return data.map(function(v,i){
-            return <p key={i}>{v.name} - {v.tel}</p>
+            return <p key={i} data-index={v.id} onClick={e => {handel(e.target.dataset.index)}}>{v.id} = {v.name} - {v.tel}</p>
         })
     }
     
@@ -24,13 +29,20 @@ class Contact extends React.Component{
         return(
             <div>
                 <div>
-                    <input type="text" value={this.state.keyword} onChange={(e)=>{
-                        this.setState({
-                            keyword : e.target.value
-                        })
-                    }} />
+                    <div>
+                        <input type="text" value={this.state.keyword} onChange={(e)=>{
+                            this.setState({
+                                keyword : e.target.value
+                            })
+                        }} />
+                    </div>
+                    {this.makeList(this.props.data, this.props.chageV)}
                 </div>
-                {this.makeList(this.props.data)}
+                <div>
+                    <h2>Detail</h2>
+                    {this.props.is ? <p>{this.props.data[this.props.is -1].name}</p> : ""}
+                    
+                </div>
             </div>
         )
     }

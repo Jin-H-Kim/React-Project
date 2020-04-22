@@ -1,34 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import MoviesList from './Components/MoviesList'
+import About from './Routers/About'
+import Home from './Routers/Home';
+import Detail from './Routers/Detail'
+import {BrowserRouter, HashRouter, Route} from 'react-router-dom'
+import Nav from './Components/Nav';
+
 
 class App extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      movies : ''
-    }
-  }
-  componentDidMount(){
-    this._getMoviesList()
-  }
-  _getMoviesList = async () => {
-    var movies = await this._calApi();
-    this.setState({
-      movies : movies
-    })
-  }
-  _calApi(){
-    return fetch("https://yts.mx/api/v2/list_movies.json?sort_by=rating")
-      .then(res => res.json())
-      .then(json => json.data.movies)
-      .catch(err => console.log(err))
-  }
   render(){
     return(
-      <div className={this.state.movies ? "moviewWrap" : "listWrap"}>
-        {this.state.movies ? <MoviesList data={this.state.movies}></MoviesList> : "Loding...."}
+      <div>
+        <BrowserRouter>
+          <Nav></Nav>
+          <Route path="/" exact={true} component={Home}></Route>
+          <Route path="/about" component={About}></Route>
+          <Route path="/detail/:id" component={Detail}></Route>
+        </BrowserRouter>
       </div>
     )
   }

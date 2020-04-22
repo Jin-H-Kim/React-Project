@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 class MoviesList extends React.Component{
     constructor(props){
@@ -15,7 +16,17 @@ class MoviesList extends React.Component{
         return data.map(function(value){
             return(
                 <li key={value.id}>
+                    <Link to={{
+                        pathname: `/detail/${value.id}`,
+                        state: {
+                            img: value.medium_cover_image,
+                            title: value.title,
+                            genre: value.genres,
+                            summary: value.summary,
+                        }
+                    }}>
                     <p className="img"><img src={value.medium_cover_image} alt={value.title} /></p>
+                    </Link>
                     <div className="desc">
                         <p className="title">{value.title} ({value.rating})</p>
                         <p> 

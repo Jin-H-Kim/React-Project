@@ -24,6 +24,7 @@ class App extends React.Component{
       ]
     }
   }
+  
   makeContent(){
     var _title, _desc, _article = null;
     var _selected = this.state.selected;
