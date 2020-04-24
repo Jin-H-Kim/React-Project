@@ -139,3 +139,9 @@ app.get('/api/customers', (req, res)=>{
         }
     )
 })
+
+
+
+
+//Render : componentWillMount > render > componentDidMount
+//update : componentWillReceiveProps > shouldComponentUpdate > componentWillUpdate > render > componentDidUpdate

@@ -1,8 +1,7 @@
 import React from 'react';
 
 class Contact extends React.Component{
-    //Render : componentWillMount > render > componentDidMount
-    //update : componentWillReceiveProps > shouldComponentUpdate > componentWillUpdate > render > componentDidUpdate
+    
     constructor(props){
         super(props)
         this.state = {

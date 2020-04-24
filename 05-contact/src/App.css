@@ -1,2 +1,4 @@
 body, html{text-align:left;}
 body, html, div, ul, li, p{margin:0;}
+
+.box{border:10px solid #7f0aff; text-align:center;}
