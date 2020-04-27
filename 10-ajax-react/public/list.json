@@ -1,0 +1,5 @@
+[
+    {"id": 1, "list": "HTML", "desc": "HTML is ..."},
+    {"id": 2, "list": "CSS", "desc": "CSS is ..." },
+    {"id": 3, "list": "JS", "desc": "Javascript is ..." }
+]
